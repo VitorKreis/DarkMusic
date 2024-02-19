@@ -1,14 +1,47 @@
 package com.DarkMusic.DarkMusic.models;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity //Tranforma isso em uma entidade
+@Table(name = "artistas") //Nome da tabela
 public class Artista {
 
+    //Cria o ids e config seu valor
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+
+    //Mapea os dados
+
+    @Column(unique = true)
     private String Nome;
 
+    //Salvo o tipo enumeretd
+    @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
-    private List<Musicas> musicas;
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Musicas> musicas = new ArrayList<>();
+
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public List<Musicas> getMusicas() {
+        return musicas;
+    }
+
+    public void setMusicas(List<Musicas> musicas) {
+        this.musicas = musicas;
+    }
 
     public String getNome() {
         return Nome;
@@ -24,5 +57,13 @@ public class Artista {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Artista{" +
+                "Id=" + Id +
+                ", Nome='" + Nome + '\'' +
+                '}';
     }
 }
