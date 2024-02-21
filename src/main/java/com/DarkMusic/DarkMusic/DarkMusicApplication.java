@@ -2,6 +2,7 @@ package com.DarkMusic.DarkMusic;
 
 import com.DarkMusic.DarkMusic.principal.Principal;
 import com.DarkMusic.DarkMusic.respoitory.artistaRepository;
+import com.DarkMusic.DarkMusic.respoitory.musicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +13,12 @@ public class DarkMusicApplication implements CommandLineRunner {
 
 
 	@Autowired
-	artistaRepository repository;
+	artistaRepository artistaRepository;
+
+	@Autowired
+	musicaRepository musicaRepository;
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(DarkMusicApplication.class, args);
@@ -21,7 +27,7 @@ public class DarkMusicApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Hello World");
-		Principal principal = new Principal(repository);
+		Principal principal = new Principal(artistaRepository, musicaRepository);
 
 		principal.Exibirmenu();
 	}

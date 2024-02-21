@@ -9,7 +9,7 @@ public class Musicas {
 
 
 
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
@@ -17,6 +17,11 @@ public class Musicas {
 
     @ManyToOne
     private Artista artista;
+
+
+    public Musicas(){}
+
+
 
 
     public Long getId() {
@@ -41,5 +46,15 @@ public class Musicas {
 
     public void setArtista(Artista artista) {
         this.artista = artista;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Musicas{" +
+                "Id=" + Id +
+                ", Nome='" + Nome + '\'' +
+                ", artista=" + artista +
+                '}';
     }
 }

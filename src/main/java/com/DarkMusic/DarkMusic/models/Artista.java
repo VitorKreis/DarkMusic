@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity //Tranforma isso em uma entidade
 @Table(name = "artistas") //Nome da tabela
@@ -26,6 +27,13 @@ public class Artista {
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Musicas> musicas = new ArrayList<>();
 
+    public Artista(){}
+
+
+    public Artista(String nome, Tipo tipo){
+        this.Nome = nome;
+        this.tipo = tipo;
+    }
 
     public Long getId() {
         return Id;
